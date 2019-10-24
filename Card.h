@@ -9,6 +9,20 @@ const string ranks[] = {"Ace","2","3","4","5","6","7","8","9","10","Jack","King"
 const string suits[] = {"Clubs","Diamonds","Hearts","Spades"};
 
 class Card {
+    public:
+        //default constructor
+        Card();
+        //alternate constructor
+        Card(int rank, int suit);
+        //overloaded comparison operator
+        bool operator <(Card c);
+        //return the rank and suit of card
+        string cardValue();
+    private:
+        //declare private card members
+        int rankN;
+        int suitT;
+        string value;
 
 };
 
