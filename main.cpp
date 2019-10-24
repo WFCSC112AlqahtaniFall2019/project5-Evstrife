@@ -13,7 +13,11 @@ int main() {
 
     bool play, invalid, guessedHigher;
     string response;
-    int compValue, userValue, nWin = 0, nLoss = 0, nTie = 0;
+    Card compValue, userValue;
+    int nwin;
+    int nlose;
+    int ntie;
+    int ncount;
     srand(time(NULL));
 
     //game begin
@@ -24,14 +28,17 @@ int main() {
     Deck discard;
     deck.populateDeck();
     deck.shuffleCard();
-    //
-    while(play) {
-        // assign values to computer and user
-        compValue = rand() % 52;
-        userValue = rand() % 52;
+    //start if player replay, and count smaller than 26
+    while(play && ncount < 26) {
+        //deals card
+        compValue = deck.removeCard();
+        userValue = deck.removeCard();
+        //adds cards to discard
+        discard.addCard(compValue);
+        discard.addCard(userValue);
 
         // get user's bet
-        cout << "Computer's value is " << compValue << endl;
+        cout << "Computer's value is " << compValue.cardValue() << endl;
         invalid = true;
         while(invalid) {
             cout << "Do you think your number is higher or lower? (H/L)" << endl;
@@ -52,17 +59,17 @@ int main() {
         }
 
         // determine outcome
-        if((compValue < userValue && guessedHigher) || (compValue > userValue && !guessedHigher)) {
+        if((compValue.cardValue() < userValue.cardValue() && guessedHigher) || (compValue.cardValue() > userValue.cardValue() && !guessedHigher)) {
             cout << "Great! You're right:" << endl;
-            nWin++;
-        } else if((compValue > userValue && guessedHigher) || (compValue < userValue && !guessedHigher)) {
+            nwin++;
+        } else if((compValue.cardValue() > userValue.cardValue() && guessedHigher) || (compValue.cardValue() < userValue.cardValue() && !guessedHigher)) {
             cout << "Sorry, you're wrong:" << endl;
-            nLoss++;
+            nlose++;
         } else {
             cout << "It's a tie:" << endl;
-            nTie++;
+            ntie++;
         }
-        cout << "\tyour value is " << userValue << endl;
+        cout << "\tyour value is " << userValue.cardValue() << endl;
 
         // ask user to play again
         invalid = true;
@@ -83,11 +90,15 @@ int main() {
                 invalid = true;
             }
         }
+        ncount++;
     }
-
+    //if count = 26, finish the game
+    if(ncount == 26){
+        cout<<"No cards to play , please restart."<<endl;
+    }
     // output stats
     cout << "Thanks for playing!" << endl;
-    cout << "Your record was " << nWin << "-" << nLoss << "-" << nTie << " (W-L-T)" << endl;
+    cout << "Your record was " << nwin << "-" << nlose << "-" << ntie << " (W-L-T)" << endl;
 
     return 0;
 }
