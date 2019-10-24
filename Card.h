@@ -1,3 +1,7 @@
+
+/* Siyu (Eva) Wu
+ * Project 5
+ * */
 #ifndef BLINDMANSBLUFF_CARD_H
 #define BLINDMANSBLUFF_CARD_H
 #include <string>

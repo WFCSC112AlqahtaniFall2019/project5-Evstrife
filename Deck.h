@@ -1,3 +1,6 @@
+/* Siyu (Eva) Wu
+ * Project 5
+ * */
 #ifndef BLINDMANSBLUFF_DECK_H
 #define BLINDMANSBLUFF_DECK_H
 
@@ -11,7 +14,7 @@ public:
     ~Deck();//destructor
     void populateDeck();//populates the deck
     void shuffleCard(); //shuffles the cards
-    Card dealCard();//deals a card
+    Card removeCard();//remove a card
     bool addCard(Card v);//adds a card to the discard cards
     void discardPrint();//prints out the discard cards
 
@@ -20,6 +23,7 @@ private:
     Card* cards;
     int arraySize;
     int cardsLeft;
+    int current;
 };
 
 

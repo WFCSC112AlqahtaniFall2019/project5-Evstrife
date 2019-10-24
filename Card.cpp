@@ -1,3 +1,6 @@
+/* Siyu (Eva) Wu
+ * Project 5
+ * */
 #include "Card.h"
 #include <string>
 #include <iostream>

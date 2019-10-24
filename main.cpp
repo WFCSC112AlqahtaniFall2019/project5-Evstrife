@@ -1,3 +1,6 @@
+/* Siyu (Eva) Wu
+ * Project 5
+ * */
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -6,13 +9,22 @@
 using namespace std;
 
 int main() {
-    cout << "Welcome to Blind Man's Bluff" << endl << endl;
+    //declare all the variables
+
     bool play, invalid, guessedHigher;
     string response;
     int compValue, userValue, nWin = 0, nLoss = 0, nTie = 0;
     srand(time(NULL));
 
-    play = true;
+    //game begin
+    cout << "Welcome to Blind Man's Bluff" << endl ;
+    play = true;//check player if they wants to play again
+    //create deck, discarded deck, then populate and shuffle the card
+    Deck deck;
+    Deck discard;
+    deck.populateDeck();
+    deck.shuffleCard();
+    //
     while(play) {
         // assign values to computer and user
         compValue = rand() % 52;
